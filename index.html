@@ -1,736 +1,920 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.5">
-  <title>mani.net • Профиль</title>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.5">
+    <title>mani.net</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    :root {
-      --bg: #030303;
-      --card: #0b0b0b;
-      --border: #1a1a1a;
-      --border-hover: #2e2e2e;
-      --text: #b0b0b0;
-      --text-bright: #f5f5f5;
-      --text-secondary: #666;
-      --text-tertiary: #444;
-      --accent: #fff;
-      --glow: rgba(255,255,255,0.03);
-      --badge-bg: #111;
-      --badge-border: #222;
-      --badge-color: #777;
-      --badge-icon: #999;
-      --btn-channel-bg: #fff;
-      --btn-channel-color: #000;
-      --btn-channel-hover: #e5e5e5;
-      --btn-chat-bg: #1a1a1a;
-      --btn-chat-color: #fff;
-      --btn-chat-border: #333;
-      --btn-chat-hover-bg: #252525;
-      --btn-chat-hover-border: #555;
-      --btn-forum-bg: transparent;
-      --btn-forum-color: #999;
-      --btn-forum-border: #2a2a2a;
-      --btn-forum-hover-bg: rgba(255,255,255,0.03);
-      --btn-forum-hover-color: #fff;
-      --btn-forum-hover-border: #555;
-      --divider-color: #222;
-      --image-brightness: 0.8;
-      --image-hover-brightness: 0.9;
-      --star-opacity: 0.7;
-      --music-btn-bg: rgba(20,20,20,0.85);
-      --music-btn-color: #ccc;
-      --music-btn-border: rgba(255,255,255,0.1);
-      --music-btn-hover-bg: rgba(30,30,30,0.9);
-      --music-btn-hover-color: #fff;
-    }
+        :root {
+            --bg: #030303;
+            --card: #0b0b0b;
+            --border: #1a1a1a;
+            --border-hover: #2e2e2e;
+            --text: #b0b0b0;
+            --text-bright: #f5f5f5;
+            --text-secondary: #666;
+            --text-tertiary: #444;
+            --accent: #fff;
+            --badge-bg: #111;
+            --badge-border: #222;
+            --badge-color: #777;
+            --btn-channel-bg: #fff;
+            --btn-channel-color: #000;
+            --btn-channel-hover: #e5e5e5;
+            --btn-chat-bg: #1a1a1a;
+            --btn-chat-color: #fff;
+            --btn-chat-border: #333;
+            --btn-chat-hover-bg: #252525;
+            --btn-chat-hover-border: #555;
+            --btn-forum-bg: transparent;
+            --btn-forum-color: #999;
+            --btn-forum-border: #2a2a2a;
+            --btn-forum-hover-bg: rgba(255, 255, 255, 0.03);
+            --btn-forum-hover-color: #fff;
+            --btn-forum-hover-border: #555;
+            --divider-color: #222;
+            --image-brightness: 0.8;
+            --image-hover-brightness: 0.9;
+            --star-opacity: 0.7;
+            --music-btn-bg: rgba(20, 20, 20, 0.85);
+            --music-btn-color: #ccc;
+            --music-btn-border: rgba(255, 255, 255, 0.1);
+            --music-btn-hover-bg: rgba(30, 30, 30, 0.9);
+            --music-btn-hover-color: #fff;
+            --nav-bg: rgba(10, 10, 10, 0.8);
+            --post-bg: #0b0b0b;
+            --post-border: #1a1a1a;
+            --post-hover-border: #2a2a2a;
+            --tag-bg: #111;
+            --tag-color: #888;
+            --tag-border: #1f1f1f;
+        }
 
-    body.light {
-      --bg: #f5f5f5;
-      --card: #ffffff;
-      --border: #e0e0e0;
-      --border-hover: #c0c0c0;
-      --text: #666;
-      --text-bright: #111;
-      --text-secondary: #999;
-      --text-tertiary: #aaa;
-      --accent: #000;
-      --glow: rgba(0,0,0,0.03);
-      --badge-bg: #f0f0f0;
-      --badge-border: #ddd;
-      --badge-color: #888;
-      --badge-icon: #999;
-      --btn-channel-bg: #000;
-      --btn-channel-color: #fff;
-      --btn-channel-hover: #1a1a1a;
-      --btn-chat-bg: #f0f0f0;
-      --btn-chat-color: #000;
-      --btn-chat-border: #ddd;
-      --btn-chat-hover-bg: #e5e5e5;
-      --btn-chat-hover-border: #aaa;
-      --btn-forum-bg: transparent;
-      --btn-forum-color: #888;
-      --btn-forum-border: #ddd;
-      --btn-forum-hover-bg: rgba(0,0,0,0.02);
-      --btn-forum-hover-color: #000;
-      --btn-forum-hover-border: #aaa;
-      --divider-color: #ddd;
-      --image-brightness: 1;
-      --image-hover-brightness: 1.05;
-      --star-opacity: 0.4;
-      --music-btn-bg: rgba(255,255,255,0.85);
-      --music-btn-color: #555;
-      --music-btn-border: rgba(0,0,0,0.1);
-      --music-btn-hover-bg: rgba(255,255,255,0.95);
-      --music-btn-hover-color: #000;
-    }
+        body.light {
+            --bg: #f5f5f5;
+            --card: #ffffff;
+            --border: #e0e0e0;
+            --border-hover: #c0c0c0;
+            --text: #666;
+            --text-bright: #111;
+            --text-secondary: #999;
+            --text-tertiary: #aaa;
+            --accent: #000;
+            --badge-bg: #f0f0f0;
+            --badge-border: #ddd;
+            --badge-color: #888;
+            --btn-channel-bg: #000;
+            --btn-channel-color: #fff;
+            --btn-channel-hover: #1a1a1a;
+            --btn-chat-bg: #f0f0f0;
+            --btn-chat-color: #000;
+            --btn-chat-border: #ddd;
+            --btn-chat-hover-bg: #e5e5e5;
+            --btn-chat-hover-border: #aaa;
+            --btn-forum-bg: transparent;
+            --btn-forum-color: #888;
+            --btn-forum-border: #ddd;
+            --btn-forum-hover-bg: rgba(0, 0, 0, 0.02);
+            --btn-forum-hover-color: #000;
+            --btn-forum-hover-border: #aaa;
+            --divider-color: #ddd;
+            --image-brightness: 1;
+            --image-hover-brightness: 1.05;
+            --star-opacity: 0.4;
+            --music-btn-bg: rgba(255, 255, 255, 0.85);
+            --music-btn-color: #555;
+            --music-btn-border: rgba(0, 0, 0, 0.1);
+            --music-btn-hover-bg: rgba(255, 255, 255, 0.95);
+            --music-btn-hover-color: #000;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --post-bg: #ffffff;
+            --post-border: #e0e0e0;
+            --post-hover-border: #c0c0c0;
+            --tag-bg: #f0f0f0;
+            --tag-color: #888;
+            --tag-border: #ddd;
+        }
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      margin: 0;
-      position: relative;
-      overflow-x: hidden;
-      -webkit-tap-highlight-color: transparent;
-      transition: background 0.5s ease;
-    }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 0.5s ease;
+        }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse at 20% 20%, rgba(128,128,128,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 75%, rgba(100,100,100,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 50% 50%, rgba(128,128,128,0.01) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      animation: ambientPulse 8s ease-in-out infinite alternate;
-    }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(128, 128, 128, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 75%, rgba(100, 100, 100, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, rgba(128, 128, 128, 0.01) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            animation: ambientPulse 8s ease-in-out infinite alternate;
+        }
 
-    @keyframes ambientPulse {
-      0% { opacity: 0.7; }
-      100% { opacity: 1; }
-    }
+        @keyframes ambientPulse {
+            0% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(128,128,128,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(128,128,128,0.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-      mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-    }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(128, 128, 128, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(128, 128, 128, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
 
-    .theme-toggle {
-      position: fixed;
-      top: 1.5rem;
-      right: 1.5rem;
-      z-index: 200;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 2.8rem;
-      height: 2.8rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--text);
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
+        .theme-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 200;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 2.8rem;
+            height: 2.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
-    .theme-toggle:hover {
-      transform: scale(1.1);
-      border-color: var(--border-hover);
-    }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--border-hover);
+        }
 
-    .theme-toggle:active {
-      transform: scale(0.95);
-    }
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 99;
+            overflow: hidden;
+        }
 
-    .stars {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 99;
-      overflow: hidden;
-    }
+        .star {
+            position: absolute;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+            opacity: 0;
+        }
 
-    .star {
-      position: absolute;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: twinkle ease-in-out infinite;
-      opacity: 0;
-    }
+        @keyframes twinkle {
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            30% {
+                opacity: var(--star-opacity);
+                transform: scale(1);
+            }
+            50% {
+                opacity: var(--star-opacity);
+                transform: scale(1.3);
+            }
+            70% {
+                opacity: var(--star-opacity);
+                transform: scale(1);
+            }
+        }
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 0; transform: scale(0.5); }
-      30% { opacity: var(--star-opacity); transform: scale(1); }
-      50% { opacity: var(--star-opacity); transform: scale(1.3); }
-      70% { opacity: var(--star-opacity); transform: scale(1); }
-    }
+        .star-glow {
+            position: absolute;
+            background: var(--accent);
+            border-radius: 50%;
+            filter: blur(3px);
+            animation: glowPulse ease-in-out infinite;
+            opacity: 0;
+        }
 
-    .star-glow {
-      position: absolute;
-      background: var(--accent);
-      border-radius: 50%;
-      filter: blur(3px);
-      animation: glowPulse ease-in-out infinite;
-      opacity: 0;
-    }
+        @keyframes glowPulse {
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            40% {
+                opacity: 0.15;
+                transform: scale(1.5);
+            }
+            60% {
+                opacity: 0.1;
+                transform: scale(1.8);
+            }
+        }
 
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0; transform: scale(0.5); }
-      40% { opacity: 0.15; transform: scale(1.5); }
-      60% { opacity: 0.1; transform: scale(1.8); }
-    }
+        .app-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: entry 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
 
-    .card {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 560px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 2rem;
-      box-shadow: 
-        0 40px 80px rgba(0,0,0,0.15),
-        0 0 0 1px rgba(128,128,128,0.02) inset;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-      color: var(--text);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: cardEntry 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-    }
+        @keyframes entry {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    @keyframes cardEntry {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .nav-tabs {
+            display: flex;
+            background: var(--nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 3rem;
+            padding: 0.3rem;
+            gap: 0.2rem;
+            position: sticky;
+            top: 1rem;
+            z-index: 150;
+        }
 
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--border-hover);
-      box-shadow: 
-        0 50px 100px rgba(0,0,0,0.2),
-        0 0 0 1px rgba(128,128,128,0.04) inset;
-    }
+        .nav-tab {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            border-radius: 3rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: 20%;
-      right: 20%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(128,128,128,0.15), transparent);
-      z-index: 10;
-      opacity: 0;
-      transition: opacity 0.5s;
-    }
+        .nav-tab i {
+            font-size: 1rem;
+        }
 
-    .card:hover::before {
-      opacity: 1;
-    }
+        .nav-tab.active {
+            background: var(--btn-channel-bg);
+            color: var(--btn-channel-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
-    .image-container {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: #060606;
-      border-bottom: 1px solid var(--border);
-    }
+        .page {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            animation: fadeSlide 0.4s ease;
+        }
 
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: grayscale(50%) contrast(1.15) brightness(var(--image-brightness));
-      transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-    }
+        .page.active {
+            display: flex;
+        }
 
-    .card:hover .image-container img {
-      filter: grayscale(10%) contrast(1.2) brightness(var(--image-hover-brightness));
-      transform: scale(1.05);
-    }
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .image-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg, 
-        rgba(0,0,0,0.1) 0%, 
-        rgba(0,0,0,0) 40%, 
-        rgba(0,0,0,0.4) 80%, 
-        rgba(0,0,0,0.85) 100%
-      );
-      pointer-events: none;
-      z-index: 2;
-    }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(128, 128, 128, 0.02) inset;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            color: var(--text);
+        }
 
-    .image-overlay::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%);
-    }
+        .card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(128, 128, 128, 0.04) inset;
+        }
 
-    .image-glare {
-      position: absolute;
-      top: -30%;
-      left: -30%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 45%, transparent 50%);
-      transform: rotate(25deg);
-      pointer-events: none;
-      z-index: 3;
-      transition: left 0.8s;
-    }
+        .image-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #060606;
+            border-bottom: 1px solid var(--border);
+        }
 
-    .card:hover .image-glare {
-      left: 120%;
-    }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(50%) contrast(1.15) brightness(var(--image-brightness));
+            transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
 
-    .content {
-      padding: 1.8rem 1.8rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0.8rem;
-      position: relative;
-      z-index: 5;
-    }
+        .card:hover .image-container img {
+            filter: grayscale(10%) contrast(1.2) brightness(var(--image-hover-brightness));
+            transform: scale(1.05);
+        }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      background: var(--badge-bg);
-      border: 1px solid var(--badge-border);
-      border-radius: 4rem;
-      padding: 0.3rem 1.1rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      color: var(--badge-color);
-      text-transform: uppercase;
-    }
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0.85) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
 
-    .badge i {
-      font-size: 0.85rem;
-      color: var(--badge-icon);
-    }
+        .image-glare {
+            position: absolute;
+            top: -30%;
+            left: -30%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.03) 45%, transparent 50%);
+            transform: rotate(25deg);
+            pointer-events: none;
+            z-index: 3;
+            transition: left 0.8s;
+        }
 
-    .badge-dot {
-      width: 5px;
-      height: 5px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: dotPulse 2s ease-in-out infinite;
-    }
+        .card:hover .image-glare {
+            left: 120%;
+        }
 
-    @keyframes dotPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
+        .content {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.7rem;
+        }
 
-    h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.4px;
-      color: var(--text-bright);
-      transition: color 0.5s ease;
-    }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            border-radius: 4rem;
+            padding: 0.3rem 1.1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            color: var(--badge-color);
+            text-transform: uppercase;
+        }
 
-    .divider {
-      width: 40px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--divider-color), transparent);
-    }
+        .badge-dot {
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
 
-    .buttons-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      width: 100%;
-      margin-top: 0.4rem;
-    }
+        @keyframes dotPulse {
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
 
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      border-radius: 3rem;
-      padding: 0.8rem 1.5rem;
-      width: 100%;
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.2px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid transparent;
-    }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: var(--text-bright);
+        }
 
-    .btn i {
-      font-size: 1.1rem;
-      transition: transform 0.3s;
-    }
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--divider-color), transparent);
+        }
 
-    .btn:hover i {
-      transform: translateX(2px);
-    }
+        .buttons-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            width: 100%;
+        }
 
-    .btn:active {
-      transform: scale(0.97);
-    }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            border-radius: 3rem;
+            padding: 0.8rem 1.5rem;
+            width: 100%;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
 
-    .btn::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg, transparent 40%, rgba(128,128,128,0.08) 45%, transparent 50%);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
-    }
+        .btn i {
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
 
-    .btn:hover::before {
-      transform: translateX(100%);
-    }
+        .btn:hover i {
+            transform: translateX(2px);
+        }
 
-    .btn-channel {
-      background: var(--btn-channel-bg);
-      color: var(--btn-channel-color);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
-    }
+        .btn:active {
+            transform: scale(0.97);
+        }
 
-    .btn-channel:hover {
-      background: var(--btn-channel-hover);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      transform: translateY(-2px);
-    }
+        .btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 40%, rgba(128, 128, 128, 0.08) 45%, transparent 50%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
 
-    .btn-channel i {
-      color: var(--btn-channel-color);
-    }
+        .btn:hover::before {
+            transform: translateX(100%);
+        }
 
-    .btn-chat {
-      background: var(--btn-chat-bg);
-      color: var(--btn-chat-color);
-      border-color: var(--btn-chat-border);
-    }
+        .btn-channel {
+            background: var(--btn-channel-bg);
+            color: var(--btn-channel-color);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+        }
 
-    .btn-chat:hover {
-      background: var(--btn-chat-hover-bg);
-      border-color: var(--btn-chat-hover-border);
-      transform: translateY(-2px);
-    }
+        .btn-channel:hover {
+            background: var(--btn-channel-hover);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
 
-    .btn-chat i {
-      color: var(--btn-chat-color);
-    }
+        .btn-chat {
+            background: var(--btn-chat-bg);
+            color: var(--btn-chat-color);
+            border-color: var(--btn-chat-border);
+        }
 
-    .btn-forum {
-      background: var(--btn-forum-bg);
-      color: var(--btn-forum-color);
-      border-color: var(--btn-forum-border);
-    }
+        .btn-chat:hover {
+            background: var(--btn-chat-hover-bg);
+            border-color: var(--btn-chat-hover-border);
+            transform: translateY(-2px);
+        }
 
-    .btn-forum:hover {
-      background: var(--btn-forum-hover-bg);
-      color: var(--btn-forum-hover-color);
-      border-color: var(--btn-forum-hover-border);
-      transform: translateY(-2px);
-    }
+        .btn-forum {
+            background: var(--btn-forum-bg);
+            color: var(--btn-forum-color);
+            border-color: var(--btn-forum-border);
+        }
 
-    .btn-forum i {
-      color: var(--btn-forum-color);
-      transition: color 0.3s;
-    }
+        .btn-forum:hover {
+            background: var(--btn-forum-hover-bg);
+            color: var(--btn-forum-hover-color);
+            border-color: var(--btn-forum-hover-border);
+            transform: translateY(-2px);
+        }
 
-    .btn-forum:hover i {
-      color: var(--btn-forum-hover-color);
-    }
+        .posts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
-    .music-fab {
-      position: fixed;
-      bottom: 1.8rem;
-      right: 1.8rem;
-      z-index: 300;
-      background: var(--music-btn-bg);
-      border: 1px solid var(--music-btn-border);
-      border-radius: 50%;
-      width: 3.2rem;
-      height: 3.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--music-btn-color);
-      font-size: 1.3rem;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      transition: all 0.3s ease;
-    }
+        .post-card {
+            background: var(--post-bg);
+            border: 1px solid var(--post-border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
 
-    .music-fab:hover {
-      background: var(--music-btn-hover-bg);
-      color: var(--music-btn-hover-color);
-      transform: scale(1.1);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-    }
+        .post-card:hover {
+            border-color: var(--post-hover-border);
+            transform: translateY(-2px);
+        }
 
-    .music-fab:active {
-      transform: scale(0.95);
-    }
+        .post-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            background: #0a0a0a;
+        }
 
-    .music-fab.playing {
-      animation: fabGlow 2s ease-in-out infinite;
-    }
+        .post-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: block;
+            background: #000;
+            border: none;
+            outline: none;
+        }
 
-    @keyframes fabGlow {
-      0%, 100% { box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-      50% { box-shadow: 0 8px 35px rgba(128,128,128,0.15), 0 0 0 8px rgba(128,128,128,0.03); }
-    }
+        .post-body {
+            padding: 1.2rem 1.3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
 
-    @media (max-width: 450px) {
-      .content {
-        padding: 1.4rem 1.2rem 1.6rem;
-      }
-      h1 {
-        font-size: 1.6rem;
-      }
-      .theme-toggle {
-        top: 1rem;
-        right: 1rem;
-        width: 2.4rem;
-        height: 2.4rem;
-        font-size: 1rem;
-      }
-      .music-fab {
-        bottom: 1.2rem;
-        right: 1.2rem;
-        width: 2.8rem;
-        height: 2.8rem;
-        font-size: 1.1rem;
-      }
-    }
-  </style>
+        .post-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.4px;
+        }
+
+        .post-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .post-tag {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 2rem;
+            background: var(--tag-bg);
+            color: var(--tag-color);
+            border: 1px solid var(--tag-border);
+            letter-spacing: 0.3px;
+        }
+
+        .post-text {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+            letter-spacing: 0.15px;
+        }
+
+        .music-fab {
+            position: fixed;
+            bottom: 1.8rem;
+            right: 1.8rem;
+            z-index: 300;
+            background: var(--music-btn-bg);
+            border: 1px solid var(--music-btn-border);
+            border-radius: 50%;
+            width: 3.2rem;
+            height: 3.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--music-btn-color);
+            font-size: 1.3rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-fab:hover {
+            background: var(--music-btn-hover-bg);
+            color: var(--music-btn-hover-color);
+            transform: scale(1.1);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .music-fab:active {
+            transform: scale(0.95);
+        }
+
+        .music-fab.playing {
+            animation: fabGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes fabGlow {
+            0%,
+            100% {
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(128, 128, 128, 0.15), 0 0 0 8px rgba(128, 128, 128, 0.03);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .content {
+                padding: 1.4rem 1.2rem;
+            }
+            .post-body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .nav-tab {
+                font-size: 0.75rem;
+                padding: 0.6rem 0.6rem;
+            }
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+                width: 2.4rem;
+                height: 2.4rem;
+                font-size: 1rem;
+            }
+            .music-fab {
+                bottom: 1.2rem;
+                right: 1.2rem;
+                width: 2.8rem;
+                height: 2.8rem;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
-    <i class="ri-sun-line" id="themeIcon"></i>
-  </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Тема">
+        <i class="ri-sun-line" id="themeIcon"></i>
+    </button>
 
-  <button class="music-fab" id="musicFab" aria-label="Музыка">
-    <i class="ri-play-fill" id="fabIcon"></i>
-  </button>
+    <button class="music-fab" id="musicFab" aria-label="Музыка">
+        <i class="ri-play-fill" id="fabIcon"></i>
+    </button>
 
-  <div class="stars" id="starsContainer"></div>
+    <div class="stars" id="starsContainer"></div>
 
-  <div class="card">
-    <div class="image-container">
-      <img 
-        src="img/photo.jpg" 
-        alt="Preview"
-        loading="eager"
-        onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22900%22 viewBox=%220 0 1600 900%22%3E%3Crect width=%221600%22 height=%22900%22 fill=%22%23060606%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23333%22 font-size=%2230%22 font-family=%22system-ui,sans-serif%22%3E16:9%3C/text%3E%3C/svg%3E';"
-      >
-      <div class="image-overlay"></div>
-      <div class="image-glare"></div>
+    <div class="app-container">
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-page="profile">
+                <i class="ri-user-line"></i> Профиль
+            </button>
+            <button class="nav-tab" data-page="posts">
+                <i class="ri-article-line"></i> Посты
+            </button>
+        </nav>
+
+        <div class="page active" id="page-profile">
+            <div class="card">
+                <div class="image-container">
+                    <img src="img/photo.jpg" alt="Preview" loading="eager"
+                    onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22900%22%3E%3Crect width=%221600%22 height=%22900%22 fill=%22%23060606%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23333%22 font-size=%2230%22%3E16:9%3C/text%3E%3C/svg%3E';"
+                >
+                <div class="image-overlay"></div>
+                <div class="image-glare"></div>
+            </div>
+            <div class="content">
+                <div class="badge">
+                    <span class="badge-dot"></span> wheback <span class="badge-dot"></span>
+                </div>
+                <h1>mani.net</h1>
+                <div class="divider"></div>
+                <div class="buttons-row">
+                    <a href="https://t.me/your_channel" target="_blank" rel="noopener" class="btn btn-channel">
+                        <i class="ri-telegram-fill"></i> Канал
+                    </a>
+                    <a href="https://t.me/your_chat" target="_blank" rel="noopener" class="btn btn-chat">
+                        <i class="ri-chat-3-fill"></i> Чат
+                    </a>
+                    <a href="https://your-site.com" target="_blank" rel="noopener" class="btn btn-forum">
+                        <i class="ri-global-line"></i> Сайт
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="content">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        wheback
-        <span class="badge-dot"></span>
-      </div>
-
-      <h1>mani.net</h1>
-      <div class="divider"></div>
-
-      <div class="buttons-row">
-        <a href="https://t.me/+utHaBlQ62JxjM2Rk" target="_blank" rel="noopener noreferrer" class="btn btn-channel">
-          <i class="ri-telegram-fill"></i> Канал
-        </a>
-
-        <a href="https://t.me/+6yvC94-p8lMwZjJk" target="_blank" rel="noopener noreferrer" class="btn btn-chat">
-          <i class="ri-chat-3-fill"></i> Чат
-        </a>
-
-        <a href="https://не готов еще иди нахуй" target="_blank" rel="noopener noreferrer" class="btn btn-forum">
-          <i class="ri-global-line"></i> Сайт
-        </a>
-      </div>
+    <div class="page" id="page-posts">
+        <div class="posts-container" id="postsContainer"></div>
     </div>
-  </div>
+</div>
 
-  <audio id="bgAudio" preload="auto" loop>
+<audio id="bgAudio" preload="auto" loop>
     <source src="musik/miert.mp3" type="audio/mpeg">
-  </audio>
+</audio>
 
-  <script>
+<script>
     (function() {
-      const audio = document.getElementById('bgAudio');
-      const musicFab = document.getElementById('musicFab');
-      const fabIcon = document.getElementById('fabIcon');
-      const themeToggle = document.getElementById('themeToggle');
-      const themeIcon = document.getElementById('themeIcon');
-      const starsContainer = document.getElementById('starsContainer');
+        const audio = document.getElementById('bgAudio');
+        const musicFab = document.getElementById('musicFab');
+        const fabIcon = document.getElementById('fabIcon');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const starsContainer = document.getElementById('starsContainer');
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const pages = document.querySelectorAll('.page');
+        const postsContainer = document.getElementById('postsContainer');
 
-      let userInteracted = false;
-      let isDark = true;
+        let userInteracted = false;
+        let isDark = true;
 
-      if (audio) {
-        audio.currentTime = 0;
-        audio.volume = 0.7;
-      }
+        const defaultPosts = [
+            {
+                "date": "22 мая 2026",
+                "tags": ["mani.net", "новое"],
+                "text": "снесли старый тгк к хуям",
+                "image": "snos.jpg",
+                "video": ""
+            }
+        ];
 
-      function updateFabIcon(paused) {
-        if (!fabIcon) return;
-        fabIcon.className = paused ? 'ri-play-fill' : 'ri-pause-fill';
-        if (!paused) {
-          musicFab.classList.add('playing');
-        } else {
-          musicFab.classList.remove('playing');
+        function renderPosts(posts) {
+            if (!postsContainer) return;
+            if (!posts || !posts.length) {
+                postsContainer.innerHTML =
+                    '<div style="text-align:center;padding:2rem;color:var(--text-secondary);">Постов пока нет</div>';
+                return;
+            }
+            postsContainer.innerHTML = posts.map(post => {
+                let mediaHTML = '';
+                if (post.video) {
+                    const videoPath = post.video.startsWith('http') ? post.video : 'videoPS/' + post.video;
+                    if (videoPath.includes('youtube.com') || videoPath.includes('youtu.be') || videoPath
+                        .includes('vimeo.com')) {
+                        mediaHTML =
+                            `<iframe class="post-video" src="${videoPath}" allowfullscreen loading="lazy"></iframe>`;
+                    } else {
+                        mediaHTML =
+                            `<video class="post-video" src="${videoPath}" controls playsinline preload="metadata" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#000;"></video>`;
+                    }
+                }
+                if (post.image && !post.video) {
+                    const imgPath = post.image.startsWith('http') ? post.image : 'imgPS/' + post.image;
+                    mediaHTML =
+                        `<img class="post-image" src="${imgPath}" alt="Post image" loading="lazy" onerror="this.style.display='none'">`;
+                }
+                return `
+                <article class="post-card">
+                    ${mediaHTML}
+                    <div class="post-body">
+                        <div class="post-header">
+                            <span class="post-date">${post.date || ''}</span>
+                            <div class="post-tags">
+                                ${(post.tags || []).map(tag => `<span class="post-tag">#${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                        ${post.text ? `<p class="post-text">${post.text}</p>` : ''}
+                    </div>
+                </article>`;
+            }).join('');
         }
-      }
 
-      function togglePlay() {
-        if (!audio) return;
-        if (audio.paused) {
-          audio.currentTime = 0;
-          audio.play().then(() => {
-            updateFabIcon(false);
-            userInteracted = true;
-          }).catch(() => {});
-        } else {
-          audio.pause();
-          updateFabIcon(true);
+        async function loadPosts() {
+            try {
+                const response = await fetch('./posts.json');
+                if (!response.ok) throw new Error('status ' + response.status);
+                const posts = await response.json();
+                if (Array.isArray(posts) && posts.length > 0) {
+                    renderPosts(posts);
+                } else {
+                    renderPosts(defaultPosts);
+                }
+            } catch (err) {
+                console.log('posts.json не загрузился, использую посты из кода');
+                renderPosts(defaultPosts);
+            }
         }
-      }
 
-      audio.addEventListener('play', () => updateFabIcon(false));
-      audio.addEventListener('pause', () => updateFabIcon(true));
-      audio.addEventListener('ended', () => {
+        loadPosts();
+
+        if (audio) { audio.currentTime = 0;
+            audio.volume = 0.7; }
+
+        function updateFabIcon(paused) {
+            if (!fabIcon) return;
+            fabIcon.className = paused ? 'ri-play-fill' : 'ri-pause-fill';
+            if (!paused) musicFab.classList.add('playing');
+            else musicFab.classList.remove('playing');
+        }
+
+        function togglePlay() {
+            if (!audio) return;
+            if (audio.paused) {
+                audio.currentTime = 0;
+                audio.play().then(() => { updateFabIcon(false);
+                    userInteracted = true; }).catch(() => {});
+            } else { audio.pause();
+                updateFabIcon(true); }
+        }
+
+        audio.addEventListener('play', () => updateFabIcon(false));
+        audio.addEventListener('pause', () => updateFabIcon(true));
+        audio.addEventListener('ended', () => { updateFabIcon(true);
+            audio.currentTime = 0; if (userInteracted) audio.play().catch(() => {}); });
+
+        if (musicFab) musicFab.addEventListener('click', (e) => { e.stopPropagation();
+            togglePlay(); });
         updateFabIcon(true);
-        audio.currentTime = 0;
-        if (userInteracted) {
-          audio.play().catch(() => {});
-        }
-      });
 
-      if (musicFab) {
-        musicFab.addEventListener('click', (e) => {
-          e.stopPropagation();
-          togglePlay();
+        document.addEventListener('click', function initPlay(e) {
+            if (audio && audio.paused && !userInteracted && e.target !== musicFab) {
+                audio.currentTime = 0;
+                audio.play().then(() => { updateFabIcon(false);
+                    userInteracted = true; }).catch(() => {});
+            }
+            document.removeEventListener('click', initPlay);
+        }, { once: true });
+
+        function toggleTheme() {
+            isDark = !isDark;
+            if (isDark) { document.body.classList.remove('light');
+                themeIcon.className = 'ri-sun-line'; } else { document.body.classList.add('light');
+                themeIcon.className = 'ri-moon-line'; }
+        }
+        if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                navTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                pages.forEach(p => p.classList.remove('active'));
+                document.getElementById('page-' + tab.dataset.page)?.classList.add('active');
+            });
         });
-      }
 
-      updateFabIcon(true);
-
-      document.addEventListener('click', function initPlay(e) {
-        if (audio && audio.paused && !userInteracted && e.target !== musicFab) {
-          audio.currentTime = 0;
-          audio.play().then(() => {
-            updateFabIcon(false);
-            userInteracted = true;
-          }).catch(() => {});
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3 + 1.5;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDuration = (Math.random() * 4 + 2) + 's';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+            const glow = document.createElement('div');
+            glow.classList.add('star-glow');
+            glow.style.width = (size * 2.5) + 'px';
+            glow.style.height = (size * 2.5) + 'px';
+            glow.style.left = star.style.left;
+            glow.style.top = star.style.top;
+            glow.style.animationDuration = star.style.animationDuration;
+            glow.style.animationDelay = star.style.animationDelay;
+            starsContainer.appendChild(glow);
         }
-        document.removeEventListener('click', initPlay);
-      }, { once: true });
-
-      function toggleTheme() {
-        isDark = !isDark;
-        if (isDark) {
-          document.body.classList.remove('light');
-          themeIcon.className = 'ri-sun-line';
-        } else {
-          document.body.classList.add('light');
-          themeIcon.className = 'ri-moon-line';
-        }
-      }
-
-      if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-      }
-
-      function createStar() {
-        const star = document.createElement('div');
-        star.classList.add('star');
-        const size = Math.random() * 3 + 1.5;
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDuration = (Math.random() * 4 + 2) + 's';
-        star.style.animationDelay = Math.random() * 3 + 's';
-        starsContainer.appendChild(star);
-
-        const glow = document.createElement('div');
-        glow.classList.add('star-glow');
-        glow.style.width = (size * 2.5) + 'px';
-        glow.style.height = (size * 2.5) + 'px';
-        glow.style.left = star.style.left;
-        glow.style.top = star.style.top;
-        glow.style.animationDuration = star.style.animationDuration;
-        glow.style.animationDelay = star.style.animationDelay;
-        starsContainer.appendChild(glow);
-      }
-
-      function spawnStars() {
-        const count = 60;
-        for (let i = 0; i < count; i++) {
-          createStar();
-        }
-      }
-
-      spawnStars();
-
-      setInterval(() => {
-        const existingStars = starsContainer.querySelectorAll('.star');
-        if (existingStars.length < 60) {
-          createStar();
-        }
-      }, 3000);
-
+        for (let i = 0; i < 60; i++) createStar();
+        setInterval(() => { if (starsContainer.querySelectorAll('.star').length < 60) createStar(); }, 3000);
     })();
-  </script>
+</script>
 </body>
 </html>
