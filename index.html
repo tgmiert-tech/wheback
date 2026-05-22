@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.5">
-  <title>mani.net • Telegram</title>
+  <title>mani.net • Профиль</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
   <style>
     * {
@@ -27,31 +27,29 @@
       --badge-border: #222;
       --badge-color: #777;
       --badge-icon: #999;
-      --music-bg: #0a0a0a;
-      --music-border: #1a1a1a;
-      --music-hover-bg: #0d0d0d;
-      --music-hover-border: #282828;
-      --music-icon-bg: #151515;
-      --music-icon-border: #1f1f1f;
-      --music-icon-color: #888;
-      --track-color: #aaa;
-      --play-btn-bg: #181818;
-      --play-btn-border: #2a2a2a;
-      --play-btn-color: #ccc;
-      --play-btn-hover-bg: #222;
-      --play-btn-hover-border: #444;
-      --play-btn-hover-color: #fff;
-      --volume-bg: #222;
-      --volume-thumb: #ddd;
-      --btn-bg: #fff;
-      --btn-color: #000;
-      --btn-hover-bg: #fafafa;
-      --btn-shadow: rgba(255,255,255,0.06);
-      --btn-hover-shadow: rgba(255,255,255,0.1);
-      --divider-color: #333;
+      --btn-channel-bg: #fff;
+      --btn-channel-color: #000;
+      --btn-channel-hover: #e5e5e5;
+      --btn-chat-bg: #1a1a1a;
+      --btn-chat-color: #fff;
+      --btn-chat-border: #333;
+      --btn-chat-hover-bg: #252525;
+      --btn-chat-hover-border: #555;
+      --btn-forum-bg: transparent;
+      --btn-forum-color: #999;
+      --btn-forum-border: #2a2a2a;
+      --btn-forum-hover-bg: rgba(255,255,255,0.03);
+      --btn-forum-hover-color: #fff;
+      --btn-forum-hover-border: #555;
+      --divider-color: #222;
       --image-brightness: 0.8;
       --image-hover-brightness: 0.9;
       --star-opacity: 0.7;
+      --music-btn-bg: rgba(20,20,20,0.85);
+      --music-btn-color: #ccc;
+      --music-btn-border: rgba(255,255,255,0.1);
+      --music-btn-hover-bg: rgba(30,30,30,0.9);
+      --music-btn-hover-color: #fff;
     }
 
     body.light {
@@ -69,31 +67,29 @@
       --badge-border: #ddd;
       --badge-color: #888;
       --badge-icon: #999;
-      --music-bg: #f8f8f8;
-      --music-border: #e8e8e8;
-      --music-hover-bg: #f0f0f0;
-      --music-hover-border: #d5d5d5;
-      --music-icon-bg: #eee;
-      --music-icon-border: #ddd;
-      --music-icon-color: #999;
-      --track-color: #888;
-      --play-btn-bg: #f0f0f0;
-      --play-btn-border: #ddd;
-      --play-btn-color: #555;
-      --play-btn-hover-bg: #e5e5e5;
-      --play-btn-hover-border: #bbb;
-      --play-btn-hover-color: #000;
-      --volume-bg: #ddd;
-      --volume-thumb: #333;
-      --btn-bg: #000;
-      --btn-color: #fff;
-      --btn-hover-bg: #1a1a1a;
-      --btn-shadow: rgba(0,0,0,0.06);
-      --btn-hover-shadow: rgba(0,0,0,0.12);
-      --divider-color: #ccc;
+      --btn-channel-bg: #000;
+      --btn-channel-color: #fff;
+      --btn-channel-hover: #1a1a1a;
+      --btn-chat-bg: #f0f0f0;
+      --btn-chat-color: #000;
+      --btn-chat-border: #ddd;
+      --btn-chat-hover-bg: #e5e5e5;
+      --btn-chat-hover-border: #aaa;
+      --btn-forum-bg: transparent;
+      --btn-forum-color: #888;
+      --btn-forum-border: #ddd;
+      --btn-forum-hover-bg: rgba(0,0,0,0.02);
+      --btn-forum-hover-color: #000;
+      --btn-forum-hover-border: #aaa;
+      --divider-color: #ddd;
       --image-brightness: 1;
       --image-hover-brightness: 1.05;
       --star-opacity: 0.4;
+      --music-btn-bg: rgba(255,255,255,0.85);
+      --music-btn-color: #555;
+      --music-btn-border: rgba(0,0,0,0.1);
+      --music-btn-hover-bg: rgba(255,255,255,0.95);
+      --music-btn-hover-color: #000;
     }
 
     body {
@@ -239,7 +235,7 @@
     }
 
     .card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       border-color: var(--border-hover);
       box-shadow: 
         0 50px 100px rgba(0,0,0,0.2),
@@ -268,9 +264,8 @@
       width: 100%;
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      background: var(--card);
+      background: #060606;
       border-bottom: 1px solid var(--border);
-      cursor: pointer;
     }
 
     .image-container img {
@@ -278,12 +273,12 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: grayscale(30%) contrast(1.1) brightness(var(--image-brightness));
+      filter: grayscale(50%) contrast(1.15) brightness(var(--image-brightness));
       transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     .card:hover .image-container img {
-      filter: grayscale(5%) contrast(1.1) brightness(var(--image-hover-brightness));
+      filter: grayscale(10%) contrast(1.2) brightness(var(--image-hover-brightness));
       transform: scale(1.05);
     }
 
@@ -292,10 +287,10 @@
       inset: 0;
       background: linear-gradient(
         180deg, 
-        rgba(0,0,0,0.05) 0%, 
+        rgba(0,0,0,0.1) 0%, 
         rgba(0,0,0,0) 40%, 
-        rgba(0,0,0,0.2) 80%, 
-        rgba(0,0,0,0.5) 100%
+        rgba(0,0,0,0.4) 80%, 
+        rgba(0,0,0,0.85) 100%
       );
       pointer-events: none;
       z-index: 2;
@@ -305,7 +300,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%);
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%);
     }
 
     .image-glare {
@@ -314,7 +309,7 @@
       left: -30%;
       width: 60%;
       height: 100%;
-      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.04) 45%, transparent 50%);
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 45%, transparent 50%);
       transform: rotate(25deg);
       pointer-events: none;
       z-index: 3;
@@ -326,12 +321,12 @@
     }
 
     .content {
-      padding: 1.6rem 1.8rem 1.8rem;
+      padding: 1.8rem 1.8rem 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 0.7rem;
+      gap: 0.8rem;
       position: relative;
       z-index: 5;
     }
@@ -370,219 +365,175 @@
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
       line-height: 1.1;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.4px;
       color: var(--text-bright);
       transition: color 0.5s ease;
     }
 
     .divider {
-      width: 50px;
+      width: 40px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--divider-color), transparent);
-      margin: 0.1rem 0;
     }
 
-    .description {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      max-width: 80%;
-      line-height: 1.5;
-      font-weight: 400;
-      letter-spacing: 0.2px;
-    }
-
-    .music-player {
+    .buttons-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
       width: 100%;
-      background: var(--music-bg);
-      border: 1px solid var(--music-border);
-      border-radius: 4rem;
-      padding: 0.55rem 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0.5rem 0 0.6rem;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      transition: all 0.3s;
+      margin-top: 0.4rem;
     }
 
-    .music-player:hover {
-      border-color: var(--music-hover-border);
-      background: var(--music-hover-bg);
-    }
-
-    .music-info {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      min-width: 0;
-    }
-
-    .music-icon {
-      font-size: 1.2rem;
-      color: var(--music-icon-color);
-      background: var(--music-icon-bg);
-      border-radius: 50%;
-      width: 2.2rem;
-      height: 2.2rem;
+    .btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      border: 1px solid var(--music-icon-border);
-    }
-
-    .track-name {
-      font-weight: 500;
-      font-size: 0.8rem;
-      color: var(--track-color);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100px;
-      letter-spacing: 0.3px;
-    }
-
-    .audio-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .play-btn {
-      background: var(--play-btn-bg);
-      border: 1px solid var(--play-btn-border);
-      border-radius: 50%;
-      width: 2.4rem;
-      height: 2.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--play-btn-color);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      flex-shrink: 0;
-    }
-
-    .play-btn:hover {
-      background: var(--play-btn-hover-bg);
-      border-color: var(--play-btn-hover-border);
-      color: var(--play-btn-hover-color);
-      box-shadow: 0 0 20px rgba(128,128,128,0.1);
-      transform: scale(1.08);
-    }
-
-    .play-btn:active {
-      transform: scale(0.95);
-    }
-
-    .volume-slider {
-      -webkit-appearance: none;
-      width: 50px;
-      height: 2px;
-      background: var(--volume-bg);
-      border-radius: 2px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .volume-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 11px;
-      height: 11px;
-      background: var(--volume-thumb);
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 0 6px rgba(128,128,128,0.3);
-    }
-
-    .telegram-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      background: var(--btn-bg);
-      border: none;
-      border-radius: 4rem;
-      padding: 0.85rem 2rem;
+      gap: 0.55rem;
+      border-radius: 3rem;
+      padding: 0.8rem 1.5rem;
       width: 100%;
       font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 0.3px;
-      color: var(--btn-color);
+      font-size: 0.95rem;
+      letter-spacing: 0.2px;
       text-decoration: none;
-      box-shadow: 0 8px 30px var(--btn-shadow);
+      cursor: pointer;
       transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-      margin-top: 0.3rem;
       position: relative;
       overflow: hidden;
+      border: 1px solid transparent;
     }
 
-    .telegram-button::before {
+    .btn i {
+      font-size: 1.1rem;
+      transition: transform 0.3s;
+    }
+
+    .btn:hover i {
+      transform: translateX(2px);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(105deg, transparent 40%, rgba(128,128,128,0.1) 45%, transparent 50%);
+      background: linear-gradient(105deg, transparent 40%, rgba(128,128,128,0.08) 45%, transparent 50%);
       transform: translateX(-100%);
       transition: transform 0.6s;
     }
 
-    .telegram-button:hover::before {
+    .btn:hover::before {
       transform: translateX(100%);
     }
 
-    .telegram-button i {
-      font-size: 1.2rem;
-      transition: transform 0.3s;
-      color: var(--btn-color);
+    .btn-channel {
+      background: var(--btn-channel-bg);
+      color: var(--btn-channel-color);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
     }
 
-    .telegram-button:hover {
-      background: var(--btn-hover-bg);
-      box-shadow: 0 12px 35px var(--btn-hover-shadow);
-      transform: translateY(-3px);
+    .btn-channel:hover {
+      background: var(--btn-channel-hover);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transform: translateY(-2px);
     }
 
-    .telegram-button:hover i {
-      transform: translateX(3px);
+    .btn-channel i {
+      color: var(--btn-channel-color);
     }
 
-    .telegram-button:active {
-      transform: scale(0.97);
+    .btn-chat {
+      background: var(--btn-chat-bg);
+      color: var(--btn-chat-color);
+      border-color: var(--btn-chat-border);
     }
 
-    .footer-note {
-      font-size: 0.65rem;
-      color: var(--text-tertiary);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+    .btn-chat:hover {
+      background: var(--btn-chat-hover-bg);
+      border-color: var(--btn-chat-hover-border);
+      transform: translateY(-2px);
+    }
+
+    .btn-chat i {
+      color: var(--btn-chat-color);
+    }
+
+    .btn-forum {
+      background: var(--btn-forum-bg);
+      color: var(--btn-forum-color);
+      border-color: var(--btn-forum-border);
+    }
+
+    .btn-forum:hover {
+      background: var(--btn-forum-hover-bg);
+      color: var(--btn-forum-hover-color);
+      border-color: var(--btn-forum-hover-border);
+      transform: translateY(-2px);
+    }
+
+    .btn-forum i {
+      color: var(--btn-forum-color);
+      transition: color 0.3s;
+    }
+
+    .btn-forum:hover i {
+      color: var(--btn-forum-hover-color);
+    }
+
+    .music-fab {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      z-index: 300;
+      background: var(--music-btn-bg);
+      border: 1px solid var(--music-btn-border);
+      border-radius: 50%;
+      width: 3.2rem;
+      height: 3.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--music-btn-color);
+      font-size: 1.3rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .music-fab:hover {
+      background: var(--music-btn-hover-bg);
+      color: var(--music-btn-hover-color);
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+
+    .music-fab:active {
+      transform: scale(0.95);
+    }
+
+    .music-fab.playing {
+      animation: fabGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes fabGlow {
+      0%, 100% { box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+      50% { box-shadow: 0 8px 35px rgba(128,128,128,0.15), 0 0 0 8px rgba(128,128,128,0.03); }
     }
 
     @media (max-width: 450px) {
       .content {
-        padding: 1.3rem 1.2rem 1.5rem;
+        padding: 1.4rem 1.2rem 1.6rem;
       }
       h1 {
-        font-size: 1.8rem;
-      }
-      .music-player {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.6rem;
-        border-radius: 2rem;
-        padding: 0.6rem 1rem;
-      }
-      .audio-controls {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .track-name {
-        max-width: 130px;
+        font-size: 1.6rem;
       }
       .theme-toggle {
         top: 1rem;
@@ -591,12 +542,23 @@
         height: 2.4rem;
         font-size: 1rem;
       }
+      .music-fab {
+        bottom: 1.2rem;
+        right: 1.2rem;
+        width: 2.8rem;
+        height: 2.8rem;
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
   <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
     <i class="ri-sun-line" id="themeIcon"></i>
+  </button>
+
+  <button class="music-fab" id="musicFab" aria-label="Музыка">
+    <i class="ri-play-fill" id="fabIcon"></i>
   </button>
 
   <div class="stars" id="starsContainer"></div>
@@ -616,31 +578,26 @@
     <div class="content">
       <div class="badge">
         <span class="badge-dot"></span>
-        <i class="ri-telegram-fill"></i> wheback
+        wheback
         <span class="badge-dot"></span>
       </div>
-      
+
       <h1>mani.net</h1>
       <div class="divider"></div>
-      <p class="description">@hpback my stile dark</p>
 
-      <div class="music-player">
-        <div class="music-info">
-          <span class="music-icon"><i class="ri-music-fill"></i></span>
-          <span class="track-name" id="trackDisplay">miert</span>
-        </div>
-        <div class="audio-controls">
-          <button class="play-btn" id="playPauseBtn" aria-label="Play/Pause">
-            <i class="ri-play-fill" id="playIcon"></i>
-          </button>
-          <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.05" value="0.7" aria-label="Volume">
-        </div>
+      <div class="buttons-row">
+        <a href="https://t.me/+utHaBlQ62JxjM2Rk" target="_blank" rel="noopener noreferrer" class="btn btn-channel">
+          <i class="ri-telegram-fill"></i> Канал
+        </a>
+
+        <a href="https://t.me/+6yvC94-p8lMwZjJk" target="_blank" rel="noopener noreferrer" class="btn btn-chat">
+          <i class="ri-chat-3-fill"></i> Чат
+        </a>
+
+        <a href="https://не готов еще иди нахуй" target="_blank" rel="noopener noreferrer" class="btn btn-forum">
+          <i class="ri-global-line"></i> Сайт
+        </a>
       </div>
-
-      <a href="https://t.me/+utHaBlQ62JxjM2Rk" target="_blank" rel="noopener noreferrer" class="telegram-button">
-        <i class="ri-telegram-fill"></i> канал 
-      </a>
-      <div class="footer-note">mani.net · возррждение</div>
     </div>
   </div>
 
@@ -651,10 +608,8 @@
   <script>
     (function() {
       const audio = document.getElementById('bgAudio');
-      const playBtn = document.getElementById('playPauseBtn');
-      const playIcon = document.getElementById('playIcon');
-      const volumeSlider = document.getElementById('volumeSlider');
-      const trackDisplay = document.getElementById('trackDisplay');
+      const musicFab = document.getElementById('musicFab');
+      const fabIcon = document.getElementById('fabIcon');
       const themeToggle = document.getElementById('themeToggle');
       const themeIcon = document.getElementById('themeIcon');
       const starsContainer = document.getElementById('starsContainer');
@@ -664,29 +619,17 @@
 
       if (audio) {
         audio.currentTime = 0;
-        audio.volume = parseFloat(volumeSlider.value);
+        audio.volume = 0.7;
       }
 
-      function getTrackName() {
-        const sourceEl = audio.querySelector('source');
-        if (sourceEl && sourceEl.src) {
-          const src = sourceEl.src;
-          const fileName = src.substring(src.lastIndexOf('/') + 1);
-          const nameWithoutExt = fileName.replace(/\.[^/.]+$/, "");
-          let displayName = decodeURIComponent(nameWithoutExt) || "мелодия";
-          if (displayName.length > 18) displayName = displayName.substring(0, 16) + '…';
-          return displayName;
+      function updateFabIcon(paused) {
+        if (!fabIcon) return;
+        fabIcon.className = paused ? 'ri-play-fill' : 'ri-pause-fill';
+        if (!paused) {
+          musicFab.classList.add('playing');
+        } else {
+          musicFab.classList.remove('playing');
         }
-        return "мелодия";
-      }
-
-      if (trackDisplay) {
-        trackDisplay.textContent = getTrackName();
-      }
-
-      function updatePlayIcon(paused) {
-        if (!playIcon) return;
-        playIcon.className = paused ? 'ri-play-fill' : 'ri-pause-fill';
       }
 
       function togglePlay() {
@@ -694,45 +637,39 @@
         if (audio.paused) {
           audio.currentTime = 0;
           audio.play().then(() => {
-            updatePlayIcon(false);
+            updateFabIcon(false);
             userInteracted = true;
           }).catch(() => {});
         } else {
           audio.pause();
-          updatePlayIcon(true);
+          updateFabIcon(true);
         }
       }
 
-      audio.addEventListener('play', () => updatePlayIcon(false));
-      audio.addEventListener('pause', () => updatePlayIcon(true));
+      audio.addEventListener('play', () => updateFabIcon(false));
+      audio.addEventListener('pause', () => updateFabIcon(true));
       audio.addEventListener('ended', () => {
-        updatePlayIcon(true);
+        updateFabIcon(true);
         audio.currentTime = 0;
         if (userInteracted) {
           audio.play().catch(() => {});
         }
       });
 
-      if (playBtn) {
-        playBtn.addEventListener('click', (e) => {
+      if (musicFab) {
+        musicFab.addEventListener('click', (e) => {
           e.stopPropagation();
           togglePlay();
         });
       }
 
-      if (volumeSlider && audio) {
-        volumeSlider.addEventListener('input', (e) => {
-          audio.volume = parseFloat(e.target.value);
-        });
-      }
-
-      updatePlayIcon(true);
+      updateFabIcon(true);
 
       document.addEventListener('click', function initPlay(e) {
-        if (audio && audio.paused && !userInteracted) {
+        if (audio && audio.paused && !userInteracted && e.target !== musicFab) {
           audio.currentTime = 0;
           audio.play().then(() => {
-            updatePlayIcon(false);
+            updateFabIcon(false);
             userInteracted = true;
           }).catch(() => {});
         }
