@@ -55,6 +55,7 @@
             --tag-bg: #111;
             --tag-color: #888;
             --tag-border: #1f1f1f;
+            --lightbox-bg: rgba(0, 0, 0, 0.95);
         }
 
         body.light {
@@ -100,6 +101,7 @@
             --tag-bg: #f0f0f0;
             --tag-color: #888;
             --tag-border: #ddd;
+            --lightbox-bg: rgba(255, 255, 255, 0.95);
         }
 
         body {
@@ -559,6 +561,12 @@
             object-fit: cover;
             display: block;
             background: #0a0a0a;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+        }
+
+        .post-image:hover {
+            filter: brightness(1.1);
         }
 
         .post-video {
@@ -661,6 +669,111 @@
             }
         }
 
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--lightbox-bg);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 10;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgba(128, 128, 128, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+        }
+
+        .lightbox-image-wrap {
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: hidden;
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s ease;
+        }
+
+        .lightbox-image-wrap:active {
+            cursor: grabbing;
+        }
+
+        .lightbox-image {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            user-select: none;
+            -webkit-user-drag: none;
+            transform-origin: center center;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.8rem;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 3rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .lightbox-control-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .lightbox-control-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
         @media (max-width: 450px) {
             .content {
                 padding: 1.4rem 1.2rem;
@@ -689,6 +802,18 @@
                 height: 2.8rem;
                 font-size: 1.1rem;
             }
+            .lightbox-close {
+                top: 1rem;
+                right: 1rem;
+                width: 2.4rem;
+                height: 2.4rem;
+                font-size: 1rem;
+            }
+            .lightbox-controls {
+                bottom: 1.2rem;
+                gap: 0.4rem;
+                padding: 0.4rem 0.8rem;
+            }
         }
     </style>
 </head>
@@ -702,6 +827,26 @@
     </button>
 
     <div class="stars" id="starsContainer"></div>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">
+            <i class="ri-close-line"></i>
+        </button>
+        <div class="lightbox-image-wrap" id="lightboxImageWrap">
+            <img class="lightbox-image" id="lightboxImage" src="" alt="Lightbox" draggable="false">
+        </div>
+        <div class="lightbox-controls">
+            <button class="lightbox-control-btn" id="zoomOut" title="Уменьшить">
+                <i class="ri-zoom-out-line"></i>
+            </button>
+            <button class="lightbox-control-btn" id="zoomReset" title="Сбросить">
+                <i class="ri-fullscreen-line"></i>
+            </button>
+            <button class="lightbox-control-btn" id="zoomIn" title="Приблизить">
+                <i class="ri-zoom-in-line"></i>
+            </button>
+        </div>
+    </div>
 
     <div class="app-container">
         <nav class="nav-tabs">
@@ -764,18 +909,132 @@
         const pages = document.querySelectorAll('.page');
         const postsContainer = document.getElementById('postsContainer');
 
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxImageWrap = document.getElementById('lightboxImageWrap');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const zoomIn = document.getElementById('zoomIn');
+        const zoomOut = document.getElementById('zoomOut');
+        const zoomReset = document.getElementById('zoomReset');
+
         let userInteracted = false;
         let isDark = true;
+        let currentScale = 1;
+        let isDragging = false;
+        let startX, startY, translateX = 0,
+            translateY = 0;
 
-        const defaultPosts = [
-            {
-                "date": "22 мая 2026",
-                "tags": ["mani.net", "новое"],
-                "text": "снесли старый тгк к хуям",
-                "image": "snos.jpg",
-                "video": ""
+        const defaultPosts = [{
+            "date": "22 мая 2026",
+            "tags": ["mani.net", "новое"],
+            "text": "снесли старый тгк к хуям",
+            "image": "snos.jpg",
+            "video": ""
+        }];
+
+        function applyImageTransform() {
+            lightboxImage.style.transform =
+                `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+        }
+
+        function resetZoom() {
+            currentScale = 1;
+            translateX = 0;
+            translateY = 0;
+            applyImageTransform();
+            lightboxImageWrap.style.cursor = 'grab';
+        }
+
+        function openLightbox(src) {
+            lightboxImage.src = src;
+            resetZoom();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        zoomIn.addEventListener('click', () => {
+            currentScale = Math.min(currentScale + 0.5, 5);
+            applyImageTransform();
+        });
+
+        zoomOut.addEventListener('click', () => {
+            currentScale = Math.max(currentScale - 0.5, 0.5);
+            if (currentScale <= 1) { translateX = 0;
+                translateY = 0; }
+            applyImageTransform();
+        });
+
+        zoomReset.addEventListener('click', resetZoom);
+
+        lightboxImageWrap.addEventListener('mousedown', function(e) {
+            if (currentScale > 1) {
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                lightboxImageWrap.style.cursor = 'grabbing';
+                e.preventDefault();
             }
-        ];
+        });
+
+        window.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            applyImageTransform();
+        });
+
+        window.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                lightboxImageWrap.style.cursor = currentScale > 1 ? 'grab' : 'zoom-out';
+            }
+        });
+
+        lightboxImageWrap.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.3 : 0.3;
+            currentScale = Math.min(Math.max(currentScale + delta, 0.5), 5);
+            if (currentScale <= 1) { translateX = 0;
+                translateY = 0; }
+            applyImageTransform();
+        });
+
+        lightboxImageWrap.addEventListener('touchstart', function(e) {
+            if (e.touches.length === 2 && currentScale === 1) return;
+            if (e.touches.length === 1 && currentScale > 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX - translateX;
+                startY = e.touches[0].clientY - translateY;
+            }
+        }, { passive: false });
+
+        lightboxImageWrap.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            translateX = e.touches[0].clientX - startX;
+            translateY = e.touches[0].clientY - startY;
+            applyImageTransform();
+        }, { passive: false });
+
+        lightboxImageWrap.addEventListener('touchend', function() {
+            isDragging = false;
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
 
         function renderPosts(posts) {
             if (!postsContainer) return;
@@ -788,8 +1047,8 @@
                 let mediaHTML = '';
                 if (post.video) {
                     const videoPath = post.video.startsWith('http') ? post.video : 'videoPS/' + post.video;
-                    if (videoPath.includes('youtube.com') || videoPath.includes('youtu.be') || videoPath
-                        .includes('vimeo.com')) {
+                    if (videoPath.includes('youtube.com') || videoPath.includes('youtu.be') || videoPath.includes(
+                            'vimeo.com')) {
                         mediaHTML =
                             `<iframe class="post-video" src="${videoPath}" allowfullscreen loading="lazy"></iframe>`;
                     } else {
@@ -800,7 +1059,7 @@
                 if (post.image && !post.video) {
                     const imgPath = post.image.startsWith('http') ? post.image : 'imgPS/' + post.image;
                     mediaHTML =
-                        `<img class="post-image" src="${imgPath}" alt="Post image" loading="lazy" onerror="this.style.display='none'">`;
+                        `<img class="post-image" src="${imgPath}" alt="Post image" loading="lazy" data-lightbox="${imgPath}" onerror="this.style.display='none'">`;
                 }
                 return `
                 <article class="post-card">
@@ -816,6 +1075,13 @@
                     </div>
                 </article>`;
             }).join('');
+
+            document.querySelectorAll('.post-image').forEach(img => {
+                img.addEventListener('click', function() {
+                    const src = this.getAttribute('data-lightbox') || this.src;
+                    openLightbox(src);
+                });
+            });
         }
 
         async function loadPosts() {
